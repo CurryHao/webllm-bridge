@@ -33,9 +33,9 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--provider",
-        default=os.environ.get("HERMES_WEB_PROVIDER", "deepseek"),
+        default=os.environ.get("WEBLLM_PROVIDER", "deepseek"),
         choices=sorted(PROVIDERS),
-        help="Target web UI. Default: HERMES_WEB_PROVIDER or deepseek.",
+        help="Target web UI. Default: WEBLLM_PROVIDER or deepseek.",
     )
     parser.add_argument(
         "-q",
@@ -52,8 +52,8 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--cdp-url",
-        default=os.environ.get("HERMES_CDP_URL", DEFAULT_CDP_URL),
-        help="Chromium CDP endpoint. Default: HERMES_CDP_URL or http://127.0.0.1:9222.",
+        default=os.environ.get("WEBLLM_CDP_URL", DEFAULT_CDP_URL),
+        help="Chromium CDP endpoint. Default: WEBLLM_CDP_URL or http://127.0.0.1:9222.",
     )
     parser.add_argument(
         "--timeout",

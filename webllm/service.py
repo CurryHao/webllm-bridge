@@ -317,7 +317,7 @@ def ask(
     preflight: bool = True,
     health: HealthCheckConfig | None = None,
 ) -> Answer:
-    cdp_url = cdp_url or os.environ.get("HERMES_CDP_URL", "http://127.0.0.1:9222")
+    cdp_url = cdp_url or os.environ.get("WEBLLM_CDP_URL", "http://127.0.0.1:9222")
     options = AskOptions(
         timeout=timeout,
         delay=delay,

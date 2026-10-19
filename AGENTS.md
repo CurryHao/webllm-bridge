@@ -6,7 +6,7 @@ Agent-oriented Python package (`webllm/`) that connects to an existing, logged-i
 ## Commands
 - Tests (must run from repo root): `.venv\Scripts\python -m pytest -q`
 - Single test: `.venv\Scripts\python -m pytest tests/test_service.py::test_name -q`
-- Run CLI: `.venv\Scripts\python main.py --provider deepseek --question "..."` (requires a CDP browser at `HERMES_CDP_URL`, default `http://127.0.0.1:9222`).
+- Run CLI: `.venv\Scripts\python main.py --provider deepseek --question "..."` (requires a CDP browser at `WEBLLM_CDP_URL`, default `http://127.0.0.1:9222`).
 - Health check only: `.venv\Scripts\python main.py --provider deepseek --check --pretty`
 - List providers: `.venv\Scripts\python -m webllm --list-providers --pretty`
 - `.venv` is Python 3.11; system `python` is 3.13. No lint/typecheck/formatter config and no CI; pytest is the only automated verification. `Pillow` is required for baseline image diffs; the code degrades to byte comparison if it is missing.

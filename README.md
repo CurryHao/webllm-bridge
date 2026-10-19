@@ -1,6 +1,6 @@
-# Hermes Web LLM Bridge
+# webllm-bridge
 
-把已经登录的 LLM 网页端通过 CDP 交给 `hermes` agent 使用。相比 API，网页端通常有更好的联网检索、引用和完整回答。
+把已经登录的 LLM 网页端通过 CDP 交给 agent 使用。相比 API，网页端通常有更好的联网检索、引用和完整回答。
 
 工具不会启动浏览器，也不会处理登录。agent 先启动一个带远程调试端口的 Chromium 并完成登录，本工具通过 `connect_over_cdp` 复用该浏览器、标签页和登录态。
 
@@ -21,12 +21,12 @@ pip install -r requirements.txt
 ```powershell
 & "$env:ProgramFiles\Google\Chrome\Application\chrome.exe" `
   --remote-debugging-port=9222 `
-  --user-data-dir="$env:LOCALAPPDATA\hermes-webllm-profile"
+  --user-data-dir="$env:LOCALAPPDATA\webllm-bridge-profile"
 ```
 
 Chromium/Edge 同样可用，只改可执行文件路径。必须使用专门的 `--user-data-dir`：新版 Chrome 不允许在默认 profile 上开启远程调试。
 
-然后在这个浏览器里手动登录目标网页端，并保持窗口打开。默认 CDP 地址是 `http://127.0.0.1:9222`，也可以通过 `--cdp-url` 或环境变量 `HERMES_CDP_URL` 指定。
+然后在这个浏览器里手动登录目标网页端，并保持窗口打开。默认 CDP 地址是 `http://127.0.0.1:9222`，也可以通过 `--cdp-url` 或环境变量 `WEBLLM_CDP_URL` 指定。
 
 每个 provider 会复用已经打开的对应标签页；没有对应标签页时，会在同一个浏览器里新开一个。
 
@@ -53,10 +53,10 @@ python -m webllm --provider deepseek --question "你好"
 
 | 参数 | 说明 |
 | --- | --- |
-| `--provider` | `deepseek` / `qwen` / `kimi` / `wenxin` / `antafu`，默认 `deepseek`，可用 `HERMES_WEB_PROVIDER` |
+| `--provider` | `deepseek` / `qwen` / `kimi` / `wenxin` / `antafu`，默认 `deepseek`，可用 `WEBLLM_PROVIDER` |
 | `-q, --question` | 单个问题，可重复 |
 | `--input` | `.txt` / `.csv` / `.json`，`-` 表示从 stdin 读取 |
-| `--cdp-url` | CDP 地址，默认 `http://127.0.0.1:9222`，可用 `HERMES_CDP_URL` |
+| `--cdp-url` | CDP 地址，默认 `http://127.0.0.1:9222`，可用 `WEBLLM_CDP_URL` |
 | `--timeout` | 单题等待秒数，默认 300 |
 | `--delay` | 每题完成后额外等待秒数 |
 | `--new-session` | 第一题前新建会话 |
